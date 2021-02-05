@@ -1,0 +1,1 @@
+# LaravInertia-blank
