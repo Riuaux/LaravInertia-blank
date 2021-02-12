@@ -1,5 +1,7 @@
 require('./bootstrap');
 
+require('./adminlte');
+
 window.Vue = require('vue');
 
 //import Vue from 'vue';
