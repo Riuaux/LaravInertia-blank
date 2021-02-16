@@ -29,6 +29,7 @@
         "@fortawesome/fontawesome-free": "^5.15.2",
         "@inertiajs/inertia": "^0.8.4",
         "@inertiajs/inertia-vue": "^0.5.5",
-        "@inertiajs/progress": "^0.2.4"
+        "@inertiajs/progress": "^0.2.4",
+        "vuejs-noty": "^0.1.3"
     }
 }
