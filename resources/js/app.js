@@ -2,28 +2,33 @@ require('./bootstrap');
 
 require('./adminlte');
 
-window.Vue = require('vue');
+//window.Vue = require('vue');
+import Vue from 'vue';
 
-//import Vue from 'vue';
+import VueNoty from 'vuejs-noty';
+Vue.use(VueNoty, {
+    theme    : 'metroui', 
+    visibilityControl: true,
+    closeWith: ['click','button'],
+});
 
-import { InertiaApp } from '@inertiajs/inertia-vue'
-Vue.use(InertiaApp)
+import { App, plugin } from '@inertiajs/inertia-vue'
+Vue.use(plugin)
 
 import { InertiaProgress } from '@inertiajs/progress'
-InertiaProgress.init()
+InertiaProgress.init();
 
-const app = document.getElementById('app')
+const el = document.getElementById('app')
 
 new Vue({
-    vuetify : new Vuetify(),
-    render: h => h(InertiaApp, {
+    render: h => h(App, {
         props: {
-            initialPage: JSON.parse(app.dataset.page),
-            resolveComponent: (component) => {
+            initialPage: JSON.parse(el.dataset.page),
+            resolveComponent: component => {
                 let parts = component.split('/')
                 let type = parts[0]
                 let module_name = parts[1]
-                /*if(type == 'Module'){
+                if(type == 'Module'){
                     let ComponentDir = parts[2]
                     let name = parts[3]
                     try {
@@ -33,7 +38,7 @@ new Vue({
                         return import(`@/Pages/Errors/not-found.vue`).then(module => module.default)
                     }
                     
-                }*/
+                }
                 if(type == 'Package'){
                     let package_name = parts[2]
                     let name = parts[3]
@@ -57,6 +62,20 @@ new Vue({
     methods: {
     },
     mounted: function(){
-        document.title = "app name";
+        document.title = "PCERP";
+        // Basic alert
+this.$noty.show("Hello world!")
+
+// Success notification
+this.$noty.success("Your profile has been saved!")
+
+// Error message
+this.$noty.error("Oops, something went wrong!")
+
+// Warning
+this.$noty.warning("Please review your information.")
+
+// Basic alert
+this.$noty.info("New version of the app is available!")
     },
-}).$mount(app)
+}).$mount(el)
