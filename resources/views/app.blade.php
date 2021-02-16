@@ -5,16 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <title>Laravel</title>
+        <title>prueba laravel-inertia</title>
 
         <!-- Fonts
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">-->
 
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
+        <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
+        <script src="{{ mix('/js/app.js') }}" defer></script>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -29,6 +26,12 @@
 
             <div class="content-wrapper">
                 @include('layouts.content')
+                <!-- Main content -->
+                <section class="content">
+                        <div>
+                            @inertia
+                        </div>
+                </section>
             </div>
 
             <div>
