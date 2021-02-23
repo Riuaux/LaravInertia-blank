@@ -2,8 +2,10 @@ require('./bootstrap');
 
 require('./adminlte');
 
+import Vue from 'vue'
 //window.Vue = require('vue');
-import Vue from 'vue';
+//import Vue from 'vue/dist/vue';
+//window.Vue = Vue;
 
 import VueNoty from 'vuejs-noty';
 Vue.use(VueNoty, {
@@ -12,12 +14,33 @@ Vue.use(VueNoty, {
     closeWith: ['click','button'],
 });
 
+import VueToastr2 from 'vue-toastr-2';
+import 'vue-toastr-2/dist/vue-toastr-2.min.css';
+window.toastr = require('toastr');
+Vue.use(VueToastr2);
+toastr.options.closeButton = true;
+toastr.options.progressBar =true;
+
 import { App, plugin } from '@inertiajs/inertia-vue'
 Vue.use(plugin)
 
 import { InertiaProgress } from '@inertiajs/progress'
 InertiaProgress.init();
 
+import VueEcho from 'vue-echo-laravel';
+import Echo from 'laravel-echo';
+const EchoInstance = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    //cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    // encrypted: true,
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    forceTLS: false,
+    disableStats: true,
+});
+Vue.use(VueEcho, EchoInstance);
+ 
 const el = document.getElementById('app')
 
 new Vue({
@@ -64,18 +87,24 @@ new Vue({
     mounted: function(){
         document.title = "PCERP";
         // Basic alert
-this.$noty.show("Hello world!")
+        //this.$noty.show("Hello world!")
 
-// Success notification
-this.$noty.success("Your profile has been saved!")
+        // Success notification
+        //this.$noty.success("Your profile has been saved!")
 
-// Error message
-this.$noty.error("Oops, something went wrong!")
+        // Error message
+        //this.$noty.error("Oops, something went wrong!")
 
-// Warning
-this.$noty.warning("Please review your information.")
+        // Warning
+        //this.$noty.warning("Please review your information.")
 
-// Basic alert
-this.$noty.info("New version of the app is available!")
+        // Basic alert
+        //this.$noty.info("New version of the app is available!")
+
+        this.$echo.channel('home').listen('NewMessage', (payload) => {
+            console.log(payload);
+            this.$noty.info(payload.message);
+            this.$toastr.info(payload.message, 'Notificacion!');
+        });
     },
 }).$mount(el)

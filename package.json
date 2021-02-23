@@ -13,7 +13,7 @@
         "axios": "^0.21.1",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
+        "jquery": "^3.5.1",
         "laravel-mix": "^5.0.1",
         "laravel-mix-merge-manifest": "^2.0.0",
         "lodash": "^4.17.19",
@@ -30,6 +30,11 @@
         "@inertiajs/inertia": "^0.8.4",
         "@inertiajs/inertia-vue": "^0.5.5",
         "@inertiajs/progress": "^0.2.4",
+        "laravel-echo": "^1.10.0",
+        "pusher-js": "^7.0.3",
+        "toastr": "^2.1.4",
+        "vue-echo-laravel": "0.0.6",
+        "vue-toastr-2": "0.0.10",
         "vuejs-noty": "^0.1.3"
     }
 }

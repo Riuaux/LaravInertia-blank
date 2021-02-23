@@ -3,7 +3,7 @@ blade-directive: version
 current:
   label: v
   major: 0
-  minor: 0
+  minor: 9
   patch: 0
   prerelease: alpha
   format: '{$major}.{$minor}.{$patch}'

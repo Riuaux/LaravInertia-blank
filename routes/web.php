@@ -20,3 +20,6 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Pages/Errors/not-found');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
